@@ -13,15 +13,16 @@
                 <tr>
                     <td><%= book.title %></td>
                     <td><%= book.body %></td>
-                    <td><%= link_to show, show_path(book.id) %></td>
-                    <td><%= link_to edit, edit_path(book.id) %></td>
-                    <td><%= link_to delete, delete_path(book.id) %></td>
+                    <td><%= link_to "show", book_path(book.id) %></td>
+                    <td><%= link_to "edit", edit_book_path(book.id) %></td>
+                    <td><%= link_to "delete", book_path(book.id), method: :delete, "data-confirm" => "Are you sure?" %></td>
                 </tr>
             <% end %>
         </table>
     </div>
+    <!--投稿フォーム-->
     <div class="new-box">
-        <% form_with modl: @book, url: '/books', method: post do |f| %>
+        <%= form_with model: @book, url: '/books', method: :post do |f| %>
             <h4>title</h4>
             <%= f.text_field :title %>
             
@@ -31,5 +32,4 @@
             <%= f.submit 'Create Book' %>
         <% end %>
     </div>
-    <tb></tb>
 </div>
